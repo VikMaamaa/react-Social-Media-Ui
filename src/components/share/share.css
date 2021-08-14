@@ -10,6 +10,11 @@
     padding: 10px;
 }
 
+.shareTop {
+    display: flex;
+    align-items: center;
+}
+
 .shareProfileImg {
     width: 50px;
     height: 50px;
@@ -29,6 +34,12 @@
 
 .shareHr {
     margin: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shareBottom {
+    display: flex;
     align-items: center;
     justify-content: space-between;
 }
@@ -64,7 +75,7 @@
     background-color: green;
     font-weight: 500;
     margin-right: 20px;
-    margin-top: 2px;
+    /* margin-top: 2px; */
     /* margin-left: 0; */
     cursor: pointer;
     color: white;
