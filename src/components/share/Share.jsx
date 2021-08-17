@@ -17,8 +17,21 @@ function Share() {
             userId: user._id,
             desc: desc.current.value
         }
+        if(file) {
+            const data = new FormData()
+            const fileName =  Date.now() + file.name
+            data.append("file",file)
+            data.append("name", fileName)
+            newPost.img = fileName;
+            try{
+                await axios.post("/upload", data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
         try {
            await axios.post("/posts", newPost)
+           window.location.reload()
         } catch (err) {
             
         }
@@ -31,6 +44,12 @@ function Share() {
                     <input ref={desc} placeholder={"What's in your mind " + user.username + "?"} className="shareInput"/>
                 </div>
                 <hr className="shareHr"/>
+                {file && (
+                    <div className="shareImgContainer">
+                        <img src={URL.createObjectURL(file)} alt="" className="shareImg"/>
+                        <Cancel className="shareCancelImg" onClick={()=>setFile(null)}/>
+                    </div>
+                )}
                 <form className="shareBottom" onSubmit={submitHandler}>
                     <div className="shareOptions">
                         <label htmlFor="file" className="shareOption">
